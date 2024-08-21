@@ -4,29 +4,25 @@ namespace App\Http\Controllers;
 
 use Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class SessionController extends Controller
 {
     //
-    public function login(){
-        return view('login');
+    public function sesi(){
+        return view('/login');
     }
 
-    function masuk(Request $request){
-        $request->validate([
-            'email' => 'required',
-            'password' => 'required'
-        ],[
-            'email.required' => 'email wajid diisi',
-            'password.required' => 'password wajid diisi'
-        ]);
-
+    public function login(Request $request){
         $infologin =[
-            'email' => $request->email,
-            'password' => $request->password
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
         ];
 
-    if(Auth::attempt($infologin)){
-        return 'sukes';
+        if(Auth::attempt($infologin)){
+            return 'sukes';
+        } else {
+            return redirect ('/login')->withErrors('user name dan password yang anda masukkan salah');
+        }
     }
 }

@@ -51,8 +51,6 @@ class PegawaiController extends Controller
         return view('edit',['pegawai' => $pegawai]);
     
     }
-
-
     // update data pegawai
     public function update(Request $request)
     {

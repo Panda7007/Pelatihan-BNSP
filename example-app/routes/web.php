@@ -3,14 +3,11 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SessionController;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/login', function () {
-    return view('login');
-});
+
 
 //route CRUD
 Route::get('/pegawai',[PegawaiController::class,'index']); // Untuk menampilkan
@@ -19,5 +16,10 @@ Route::post('/pegawai/store',[PegawaiController::class,'store']); //proses store
 Route::get('/pegawai/edit/{id}',[PegawaiController::class,'edit']); //menampilkan 
 Route::post('/pegawai/update',[PegawaiController::class,'update']); //proses update
 
-Route::get('/login',[SessionController::class,'login']); // Untuk menampilkan
-Route::post('/login/masuk',[SessionController::class,'masuk']); 
+Route::get('/sesi',[SessionController::class,'sesi']); // Untuk menampilkan
+Route::post('/sesi/masuk',[SessionController::class,'login']); //login
+
+Route::get('/', [LoginController::class,'login'])->name('login');
+Route::post('/loginaksi', [LoginController::class,'loginaksi'])->name('loginaksi');
+Route::get('/home', [HomeController::class,'index'])->middleware('auth');
+Route::get('/logoutaksi', [LoginController::class,'logoutaksi'])->name('logoutaksi')->middleware('auth');
