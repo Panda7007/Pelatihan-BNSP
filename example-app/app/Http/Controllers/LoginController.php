@@ -12,7 +12,7 @@ class LoginController extends Controller
     {
         if (Auth::check()) 
         {
-            return redirect('home');
+            return redirect('/pegawai');
         }
         else
         {
@@ -29,7 +29,7 @@ class LoginController extends Controller
 
         if (Auth::Attempt($data)) 
         {
-            return redirect('home');
+            return redirect('/pegawai');
         }
         else
         {

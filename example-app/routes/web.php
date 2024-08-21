@@ -10,7 +10,7 @@ use App\Http\Controllers\HomeController;
 
 
 //route CRUD
-Route::get('/pegawai',[PegawaiController::class,'index']); // Untuk menampilkan
+Route::get('/pegawai',[PegawaiController::class,'index'])->middleware('auth'); // Untuk menampilkan
 Route::get('/pegawai/tambah',[PegawaiController::class,'tambah']); //tampilan tamba h
 Route::post('/pegawai/store',[PegawaiController::class,'store']); //proses store data
 Route::get('/pegawai/edit/{id}',[PegawaiController::class,'edit']); //menampilkan 
@@ -21,5 +21,6 @@ Route::post('/sesi/masuk',[SessionController::class,'login']); //login
 
 Route::get('/', [LoginController::class,'login'])->name('login');
 Route::post('/loginaksi', [LoginController::class,'loginaksi'])->name('loginaksi');
+
 Route::get('/home', [HomeController::class,'index'])->middleware('auth');
 Route::get('/logoutaksi', [LoginController::class,'logoutaksi'])->name('logoutaksi')->middleware('auth');
