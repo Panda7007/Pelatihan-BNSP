@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PegawaiController;
 use App\Http\Controllers\SessionController;
@@ -15,6 +16,11 @@ Route::get('/pegawai/tambah',[PegawaiController::class,'tambah']); //tampilan ta
 Route::post('/pegawai/store',[PegawaiController::class,'store']); //proses store data
 Route::get('/pegawai/edit/{id}',[PegawaiController::class,'edit']); //menampilkan 
 Route::post('/pegawai/update',[PegawaiController::class,'update']); //proses update
+Route::get('/pegawai/hapus/{id}',[PegawaiController::class,'hapus']); //untuk menghapus program
+
+//user
+Route::get('/user',[UserController::class,'index']); // Untuk menampilkan
+
 
 Route::get('/sesi',[SessionController::class,'sesi']); // Untuk menampilkan
 Route::post('/sesi/masuk',[SessionController::class,'login']); //login

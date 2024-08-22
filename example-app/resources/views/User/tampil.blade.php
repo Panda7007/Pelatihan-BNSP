@@ -18,21 +18,21 @@
                 <tr>
                     <th scope="col">Nama</th>
                     <th scope="col">Jabatan</th>
-                    <th scope="col">Umur</th>
-                    <th scope="col">Alamat</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Akses</th>
                     <th scope="col">Opsi</th>
                 </tr>
             </thead>
             <tbody>
-                @foreach($pegawai as $p)
+                @foreach($user as $p)
                 <tr>
-                    <td>{{ $p->pegawai_nama }}</td>
-                    <td>{{ $p->pegawai_jabatan }}</td>
-                    <td>{{ $p->pegawai_umur }}</td>
-                    <td>{{ $p->pegawai_alamat }}</td>
+                    <td>{{ $p->name }}</td>
+                    <td>{{ $p->email }}</td>
+                    <td>{{ $p->password }}</td>
+                    <td>{{ $p->akses }}</td>
                     <td>
-                        <a href="/pegawai/edit/{{ $p->pegawai_id }}" class="btn btn-sm btn-primary">Edit</a>
-                        <a href="/pegawai/hapus/{{ $p->pegawai_id }}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                        <a href="/pegawai/edit/{{ $p->id }}" class="btn btn-sm btn-primary">Edit</a>
+                        <a href="/pegawai/hapus/{{ $p->id }}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
                     </td>
                 </tr>
                 @endforeach
