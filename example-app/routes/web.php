@@ -20,8 +20,6 @@ Route::get('/pegawai/hapus/{id}',[PegawaiController::class,'hapus']); //untuk me
 
 //user
 Route::get('/user',[UserController::class,'index']); // Untuk menampilkan
-
-
 Route::get('/sesi',[SessionController::class,'sesi']); // Untuk menampilkan
 Route::post('/sesi/masuk',[SessionController::class,'login']); //login
 

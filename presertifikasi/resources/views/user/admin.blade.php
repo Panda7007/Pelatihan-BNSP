@@ -79,6 +79,10 @@
                             <td>{{ $p->penulis }}</td>
                             <td>{{ $p->abstrak }}</td>
                             <td>{{ $p->stok }}</td>
+                            <td>
+                                <a href="/pegawai/edit/{{ $p->id_buku }}" class="btn btn-sm btn-primary">Edit</a>
+                                <a href="/pegawai/hapus/{{ $p->id_buku }}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</a>
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -91,84 +95,36 @@
                     <tr>
                         <th scope="col">Urutan Pengajuan</th>
                         <th scope="col">Nama</th>
+                        <th scope="col">Email</th>
                         <th scope="col">Judul Buku</th>
                         <th scope="col">Tanggal</th>
                         <th scope="col">Status</th>
+                        <th scope="col">Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach($peminjam as $p)
-                    @if($p->status != 'Selesai')
-                        <tr>
-                            <td>{{ $p->id_peminjaman }}</td>
-                            <td>{{ $p->nama }}</td>
-                            <td>{{ $p->judul_buku }}</td>
-                            <td>{{ $p->tanggal }}</td>
-                            <td>{{ $p->status }}</td>
-                        </tr>
-                    @endif
+                    
+                    <tr>
+                        <td>{{ $p->id_peminjaman }}</td>
+                        <td>{{ $p->nama }}</td>
+                        <td>{{ $p->email }}</td>
+                        <td>{{ $p->judul_buku }}</td>
+                        <td>{{ $p->tanggal }}</td>
+                        <td>{{ $p->status }}</td>
+                        <td>
+                        <a href="/pegawai/edit/{{ $p->id_peminjaman }}" class="btn btn-sm btn-primary">Terima</a>
+                        <a href="/pegawai/edit/{{ $p->id_peminjaman }}" class="btn btn-sm btn-primary">Selesai</a>
+                        <a href="/pegawai/hapus/{{ $p->id_peminjaman }}" class="btn btn-sm btn-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Tolak</a>
+                        </td>
+                    </tr>
+                    
                     @endforeach
                 </tbody>
             </table>
         </div>
 
-        <div class="container mt-5" id="peminjaman">
-            <h2>Formulir Peminjaman Buku</h2>
-            <form action="/buku/pinjam" method="POST">
-                {{ csrf_field() }}
-                <div class="form-group">
-                    <label for="book_title" class="col-sm-4 control-label">Judul Buku:</label>
-                    <div class="col-sm-10">
-                        <select id="book_title" name="buku" class="form-control">
-                            @if(count($buku) > 0)
-                                @foreach($buku as $p)
-                                    @if($p->stok > 0)
-                                        <option value="{{ $p->judul_buku }}">{{ $p->judul_buku }}</option>
-                                    @endif
-                                @endforeach
-                            @else
-                                <option value="">Tidak ada buku</option>
-                            @endif
-                        </select>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="borrower_name" class="col-sm-4 control-label">Nama Peminjam:</label>
-                    <div class="col-sm-10">
-                        <input type="text" id="borrower_name" name="nama" class="form-control" placeholder="Masukkan nama peminjam">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="borrower_name" class="col-sm-2 control-label">Email</label>
-                    <div class="col-sm-10">
-                        <input type="email" id="borrower_email" name="email" class="form-control" placeholder="Admin@gmail.com">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="borrow_date" class="col-sm-4 control-label">Tanggal Peminjaman:</label>
-                    <div class="col-sm-10">
-                        <input type="date" id="borrow_date" name="tanggal" class="form-control">
-                    </div>
-                </div>
-                <div class="form-group">
-                    <div class="col-sm-offset-2 col-sm-10">
-                        <button type="submit" class="btn btn-primary">Pinjam Buku</button>
-                    </div>
-                </div>
-            </form>
-        </div>
         
-        <div class="container mt-5" id="login">
-            <h2>Login Admin</h2>
-            <form action="{{ route('loginaksi') }}" method="POST">
-                <!-- form fields for admin login form -->
-                <label for="email">Email:</label>
-                <input type="email" id="email" name="email"><br><br>
-                <label for="password">Password:</label>
-                <input type="password" id="password" name="password"><br><br>
-                <button type="submit">Login</button>
-            </form>
-        </div>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
